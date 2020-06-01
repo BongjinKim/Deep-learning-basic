@@ -13,16 +13,25 @@
     body {
       margin: 0
     }
-   a{
+   .button{
      text-decoration: none;
-     color: white;
+     color: inherit;
+     background-color: inherit;
+     border: none;
+     vertical-align: middle;
+     text-align: center;
+     cursor: pointer;
+     padding: 8px 16px;
+
+   }
+   .nav-bar {
+      display: flex;
    }
     .nav-bar .nav-bar-item {
       padding: 8px 16px;
-      float: left;
       width: auto;
       outline: 0;
-      display: block;
+
       /* background-color: blue; */
     }
 
@@ -30,18 +39,26 @@
       width: 100%;
       color: #fff !important;
       background-color: #000 !important;
-      float: left;
     }
 
     .content-right{
-      width: auto;
       /* float : right; */
     }
 
-    .dropdown{
-      
+    .dropdown-content {
+      cursor: auto;
+      color: #000;
+      background-color: #fff;
+      display: none;
+      position: absolute;
+      min-width: 160px;
+      margin: 0;
+      padding: 0;
+      z-index: 1
     }
-
+    .dropdown{
+      position: relative;
+    }
   </style>
 </head>
 
@@ -53,7 +70,7 @@
     <a href="#" class="nav-bar-item button">TOUR</a>
     <a href="#" class="nav-bar-item button">CONTACT</a>
     <div class="dropdown">
-      <button class="button">MORE<i class="fa fa-caret-down"></i></button>
+      <button class="button nav-bar-item">MORE<i class="fa fa-caret-down"></i></button>
       <div class="dropdown-content">
         <a href="#">Merchandise</a>
         <a href="#">Extras</a>
@@ -62,7 +79,11 @@
     </div>
     <a href="javascript:void(0)" class = "content-right"><i class="fa fa-search"></i></a>
   </div>
+<!-- Content -->
+<div class="content">
+  <img src="https://www.w3schools.com/w3images/ny.jpg" style="width:100%">
 
+</div>
 </body>
 
 </html>
