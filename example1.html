@@ -13,25 +13,54 @@
     body {
       margin: 0
     }
-
+   a{
+     text-decoration: none;
+     color: white;
+   }
     .nav-bar .nav-bar-item {
-      width: 100%;
       padding: 8px 16px;
+      float: left;
+      width: auto;
+      outline: 0;
+      display: block;
+      /* background-color: blue; */
     }
+
+    .content-black{
+      width: 100%;
+      color: #fff !important;
+      background-color: #000 !important;
+      float: left;
+    }
+
+    .content-right{
+      width: auto;
+      /* float : right; */
+    }
+
+    .dropdown{
+      
+    }
+
   </style>
 </head>
 
 <body>
   <!-- Navbar -->
-  <div class="nav-bar">
-    <a href="#" class="nav-bar-item">HOME</a>
-    <a href="#" class="nav-bar-item">BAND</a>
-    <a href="#" class="nav-bar-item">TOUR</a>
-    <a href="#" class="nav-bar-item">CONTACT</a>
+  <div class="nav-bar content-black">
+    <a href="#" class="nav-bar-item button">HOME</a>
+    <a href="#" class="nav-bar-item button">BAND</a>
+    <a href="#" class="nav-bar-item button">TOUR</a>
+    <a href="#" class="nav-bar-item button">CONTACT</a>
     <div class="dropdown">
-      <button class="">MORE<i class="fa fa-caret-down"></i></button>
+      <button class="button">MORE<i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="#">Merchandise</a>
+        <a href="#">Extras</a>
+        <a href="#">Media</a>
+      </div>
     </div>
-    <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+    <a href="javascript:void(0)" class = "content-right"><i class="fa fa-search"></i></a>
   </div>
 
 </body>
