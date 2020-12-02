@@ -1,26 +1,37 @@
-#numpy는 array연산의 표준으로 for 없이 연산 가능
-import numpy as np
-import tensorflow as tf
+#linear_regression
 
-x = [1, 2, 3, 4]
-y = [1, 2, 3, 4]
+#1. ready to X, Y data set
+# X = [1, 2, 3, 4, 5]
+# Y = [1, 2, 3, 4, 5]
 
-tf.model = tf.keras.Sequential()
-# units = output shape, input_dim = input shape
-tf.model.add(tf.keras.layers.Dense(units=1, input_dim=1))
+# X, Y placeholder, placeholder는 train 시킬 때, feed_dict로 넘겨 줄 수 있다.
+X = tf.placeholder(tf.float32, shape=[None])
+Y = tf.placeholder(tf.float32, shape=[None])
 
-#tf 2.0 version gradientDescent
-#tf 2.0에서는 함수형 api 사용을 권장함
-sgd = tf.keras.optimizers.SGD(lr=0.1)  # SGD = standard gradient descendent, lr = learning rate
-tf.model.compile(loss='mse', optimizer=sgd)  # mse = mean_squared_error, After computing the squared distance between the inputs, the mean value over the last dimension is returned.
-loss = mean(square(y_true - y_pred), axis=-1)
+#2. W is Weight, b is bias, tf.Variable(값, 이름)
+W = tf.Variable(tf.random_normal([1]), name ='weight')
+b = tf.Variable(tf.random_normal([1]), name ='bias')
+hypothesis = W * X + b
 
-# prints summary of the model to the terminal
-tf.model.summary()
+#3. Loss, It is cost fuction
+cost = tf.reduce_mean(tf.square(hypothesis - Y))
 
-# fit() = tf 1.0 train + for
-tf.model.fit(x, y, epochs=200)
+#4. minimizing cost function
+optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.01)
+train = optimizer.minimize(cost)
 
-# predict() returns predicted value
-y_predict = tf.model.predict(np.array([5, 6, 7, 8, 9]))
-print(y_predict)
+#5. Session 정의
+sess = tf.Session()
+
+#6. Session 초기화
+sess.run(tf.global_variables_initializer())
+
+#7. 학습
+for step in range(2001):
+    cost_var, W_var, b_var, _ = sess.run([cost, W, b, train], feed_dict = {X : [1, 2, 3, 4, 5], Y : [1, 2, 3, 4, 5]})
+    if step % 20 == 0:
+        print(step, cost_var, W_var, b_var)
+#8. test
+print(sess.run(hypothesis, feed_dict={X : [5]}))
+print(sess.run(hypothesis, feed_dict={X : [8.5]}) )
+print(sess.run(hypothesis, feed_dict={X : [7, 10]}))
